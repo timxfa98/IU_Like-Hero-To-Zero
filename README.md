@@ -29,7 +29,6 @@ docker compose up -d
 
 4. Anwendung öffnen:
 - **Web-App**: http://localhost:8080/like-hero-to-zero/
-- **WildFly Admin Console**: http://localhost:9990
 
 ---
 

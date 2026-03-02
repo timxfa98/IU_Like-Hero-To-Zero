@@ -92,24 +92,3 @@ docker exec -it herotozero-mysql mysql -uroot -proot herotozero
 
 ---
 
-## Projektstruktur
-
-```
-like-hero-to-zero/
-├── src/main/
-│   ├── java/com/herotozero/
-│   │   ├── bean/          # CDI Managed Beans
-│   │   ├── model/         # JPA Entities
-│   │   └── repository/    # Data Access Layer
-│   ├── resources/META-INF/
-│   │   └── persistence.xml
-│   └── webapp/
-│       ├── WEB-INF/web.xml
-│       ├── index.xhtml    # Öffentliche Ansicht
-│       ├── login.xhtml    # Login-Seite
-│       └── admin.xhtml    # Admin-Bereich
-├── database-setup.sql     # Initiale Daten
-├── docker-compose.yml     # Container-Orchestrierung
-├── Dockerfile             # WildFly Container
-└── startup.sh             # WildFly Konfiguration
-```

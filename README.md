@@ -90,5 +90,4 @@ docker exec -it herotozero-mysql mysql -uroot -proot herotozero
    - "Ablehnen" → Daten werden gelöscht
 5. "Abmelden" zum Logout
 
----
 

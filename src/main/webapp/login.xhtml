@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
+  <h:head>
+    <meta charset="UTF-8" />
+    <title>Wissenschaftler Login</title>
+    <link rel="icon" href="data:," />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0fdf4;
+      }
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: white;
+        padding: 15px 30px;
+        z-index: 1000;
+      }
+      .header a {
+        color: #10b981;
+        text-decoration: none;
+        font-size: 1.2em;
+        font-weight: 700;
+        transition: color 0.3s;
+      }
+      .header a:hover {
+        color: #059669;
+      }
+      .container {
+        max-width: 400px;
+        margin: 120px auto 40px;
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+      }
+      h1 {
+        color: #2d5016;
+        text-align: center;
+      }
+      .form-group {
+        margin: 15px 0;
+      }
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+      }
+      input[type="submit"],
+      button {
+        width: 100%;
+        padding: 18px 24px;
+        background: #10b981 !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 8px;
+        font-size: 18px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+      }
+      input[type="submit"]:hover,
+      button:hover {
+        background: linear-gradient(
+          135deg,
+          #059669 0%,
+          #047857 100%
+        ) !important;
+      }
+      .back-link a {
+        display: inline-block;
+        width: 100%;
+        padding: 18px 24px;
+        background: #10b981;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-size: 18px;
+        font-weight: 700;
+        text-align: center;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        box-sizing: border-box;
+      }
+      .back-link a:hover {
+        background: linear-gradient(135deg, #059669 0%, #047857 100%);
+      }
+      .back-link {
+        text-align: center;
+        margin-top: 20px;
+      }
+    </style>
+  </h:head>
+  <h:body>
+    <div class="header">
+      <h:link value="Like Hero To Zero" outcome="index" />
+    </div>
+    <div class="container">
+      <h1>Wissenschaftler Login</h1>
+      <h:form>
+        <h:messages globalOnly="true" style="color: red" />
+        <div class="form-group">
+          <h:outputLabel value="Benutzername:" for="username" />
+          <h:inputText
+            id="username"
+            value="#{loginBean.username}"
+            required="true"
+          />
+        </div>
+        <div class="form-group">
+          <h:outputLabel value="Passwort:" for="password" />
+          <h:inputSecret
+            id="password"
+            value="#{loginBean.password}"
+            required="true"
+          />
+        </div>
+        <h:commandButton value="Anmelden" action="#{loginBean.login}" />
+      </h:form>
+      <div class="back-link">
+        <h:link value="← Zurück zur Startseite" outcome="index" />
+      </div>
+    </div>
+  </h:body>
+</html>

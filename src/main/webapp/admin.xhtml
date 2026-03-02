@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
+  <h:head>
+    <meta charset="UTF-8" />
+    <title>Admin - Daten hinzufügen</title>
+    <link rel="icon" href="data:," />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0fdf4;
+      }
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: white;
+        padding: 15px 30px;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .header a {
+        color: #10b981;
+        text-decoration: none;
+        font-size: 1.2em;
+        font-weight: 700;
+        transition: color 0.3s;
+      }
+      .header a:hover {
+        color: #059669;
+      }
+      .logout button {
+        padding: 12px 24px !important;
+        font-size: 1em !important;
+        width: auto !important;
+        border-radius: 8px !important;
+      }
+      .container button {
+        padding: 18px 24px !important;
+        border-radius: 8px !important;
+        font-size: 18px !important;
+      }
+      .container {
+        max-width: 800px;
+        margin: 100px auto 40px;
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+      }
+      h1 {
+        color: #2d5016;
+      }
+      .form-group {
+        margin: 15px 0;
+      }
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+      select,
+      input[type="text"],
+      input[type="number"] {
+        width: 100%;
+        padding: 14px 18px;
+        border: 2px solid #e2e8f0;
+        border-radius: 10px;
+        font-size: 16px;
+        transition: all 0.3s;
+        background: #f7fafc;
+        box-sizing: border-box;
+      }
+      select:focus,
+      input[type="text"]:focus,
+      input[type="number"]:focus {
+        outline: none;
+        border-color: #10b981;
+        background: white;
+        box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+      }
+      input[type="submit"],
+      button {
+        padding: 18px 24px;
+        background: #10b981 !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 8px;
+        font-size: 18px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+      }
+      input[type="submit"]:hover,
+      button:hover {
+        background: linear-gradient(
+          135deg,
+          #059669 0%,
+          #047857 100%
+        ) !important;
+      }
+      input[type="submit"]:active,
+      button:active {
+      }
+      .info-box {
+        background-color: #fff3cd;
+        padding: 15px;
+        border-left: 4px solid #ffc107;
+        margin: 20px 0;
+      }
+      .success-box {
+        background-color: #d1fae5;
+        padding: 15px;
+        border-left: 4px solid #10b981;
+        margin: 20px 0;
+        color: #065f46;
+        font-weight: bold;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+      th,
+      td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #e2e8f0;
+      }
+      th {
+        background-color: #f7fafc;
+        font-weight: bold;
+      }
+      .btn-small {
+        padding: 8px 16px;
+        font-size: 14px;
+        margin: 0 5px;
+      }
+      .btn-approve {
+        background: #10b981 !important;
+      }
+      .btn-delete {
+        background: linear-gradient(
+          135deg,
+          #ef4444 0%,
+          #dc2626 100%
+        ) !important;
+      }
+    </style>
+  </h:head>
+  <h:body>
+    <div class="header">
+      <h:link value="Like Hero To Zero" outcome="index" />
+      <div class="logout">
+        <h:form>
+          <h:commandButton value="Abmelden" action="#{loginBean.logout}" />
+        </h:form>
+      </div>
+    </div>
+    <div class="container">
+      <h1>Wissenschaftler-Bereich</h1>
+      <p>Willkommen, #{loginBean.username}!</p>
+      <div class="info-box">
+        Hinzugefügte Daten werden erst nach Freigabe öffentlich sichtbar.
+      </div>
+      <h2>Neue CO2-Emissionsdaten hinzufügen</h2>
+      <h:form>
+        <h:messages globalOnly="true" />
+
+        <div class="form-group">
+          <h:outputLabel value="Land:" for="country" />
+          <h:selectOneMenu
+            id="country"
+            value="#{adminBean.newEmission.country}"
+            required="true"
+            requiredMessage="Bitte wählen Sie ein Land aus"
+          >
+            <f:selectItem
+              itemLabel="-- Bitte wählen --"
+              itemValue=""
+              noSelectionOption="true"
+            />
+
+            <f:selectItem
+              itemLabel="━━━ EUROPA ━━━"
+              itemValue=""
+              itemDisabled="true"
+            />
+            <f:selectItem itemLabel="Albanien" itemValue="Albanien" />
+            <f:selectItem itemLabel="Belgien" itemValue="Belgien" />
+            <f:selectItem itemLabel="Bulgarien" itemValue="Bulgarien" />
+            <f:selectItem itemLabel="Dänemark" itemValue="Dänemark" />
+            <f:selectItem itemLabel="Deutschland" itemValue="Deutschland" />
+            <f:selectItem itemLabel="Estland" itemValue="Estland" />
+            <f:selectItem itemLabel="Finnland" itemValue="Finnland" />
+            <f:selectItem itemLabel="Frankreich" itemValue="Frankreich" />
+            <f:selectItem itemLabel="Griechenland" itemValue="Griechenland" />
+            <f:selectItem itemLabel="Irland" itemValue="Irland" />
+            <f:selectItem itemLabel="Island" itemValue="Island" />
+            <f:selectItem itemLabel="Italien" itemValue="Italien" />
+            <f:selectItem itemLabel="Kroatien" itemValue="Kroatien" />
+            <f:selectItem itemLabel="Lettland" itemValue="Lettland" />
+            <f:selectItem itemLabel="Litauen" itemValue="Litauen" />
+            <f:selectItem itemLabel="Luxemburg" itemValue="Luxemburg" />
+            <f:selectItem itemLabel="Malta" itemValue="Malta" />
+            <f:selectItem itemLabel="Niederlande" itemValue="Niederlande" />
+            <f:selectItem itemLabel="Norwegen" itemValue="Norwegen" />
+            <f:selectItem itemLabel="Österreich" itemValue="Österreich" />
+            <f:selectItem itemLabel="Polen" itemValue="Polen" />
+            <f:selectItem itemLabel="Portugal" itemValue="Portugal" />
+            <f:selectItem itemLabel="Rumänien" itemValue="Rumänien" />
+            <f:selectItem itemLabel="Russland" itemValue="Russland" />
+            <f:selectItem itemLabel="Schweden" itemValue="Schweden" />
+            <f:selectItem itemLabel="Schweiz" itemValue="Schweiz" />
+            <f:selectItem itemLabel="Serbien" itemValue="Serbien" />
+            <f:selectItem itemLabel="Slowakei" itemValue="Slowakei" />
+            <f:selectItem itemLabel="Slowenien" itemValue="Slowenien" />
+            <f:selectItem itemLabel="Spanien" itemValue="Spanien" />
+            <f:selectItem itemLabel="Tschechien" itemValue="Tschechien" />
+            <f:selectItem itemLabel="Ukraine" itemValue="Ukraine" />
+            <f:selectItem itemLabel="Ungarn" itemValue="Ungarn" />
+            <f:selectItem
+              itemLabel="Vereinigtes Königreich"
+              itemValue="Vereinigtes Königreich"
+            />
+
+            <f:selectItem
+              itemLabel="━━━ ASIEN ━━━"
+              itemValue=""
+              itemDisabled="true"
+            />
+            <f:selectItem itemLabel="Afghanistan" itemValue="Afghanistan" />
+            <f:selectItem itemLabel="Bangladesch" itemValue="Bangladesch" />
+            <f:selectItem itemLabel="China" itemValue="China" />
+            <f:selectItem itemLabel="Indien" itemValue="Indien" />
+            <f:selectItem itemLabel="Indonesien" itemValue="Indonesien" />
+            <f:selectItem itemLabel="Irak" itemValue="Irak" />
+            <f:selectItem itemLabel="Iran" itemValue="Iran" />
+            <f:selectItem itemLabel="Israel" itemValue="Israel" />
+            <f:selectItem itemLabel="Japan" itemValue="Japan" />
+            <f:selectItem itemLabel="Jordanien" itemValue="Jordanien" />
+            <f:selectItem itemLabel="Kasachstan" itemValue="Kasachstan" />
+            <f:selectItem itemLabel="Malaysia" itemValue="Malaysia" />
+            <f:selectItem itemLabel="Pakistan" itemValue="Pakistan" />
+            <f:selectItem itemLabel="Philippinen" itemValue="Philippinen" />
+            <f:selectItem itemLabel="Saudi-Arabien" itemValue="Saudi-Arabien" />
+            <f:selectItem itemLabel="Singapur" itemValue="Singapur" />
+            <f:selectItem itemLabel="Südkorea" itemValue="Südkorea" />
+            <f:selectItem itemLabel="Thailand" itemValue="Thailand" />
+            <f:selectItem itemLabel="Türkei" itemValue="Türkei" />
+            <f:selectItem
+              itemLabel="Vereinigte Arabische Emirate"
+              itemValue="Vereinigte Arabische Emirate"
+            />
+            <f:selectItem itemLabel="Vietnam" itemValue="Vietnam" />
+
+            <f:selectItem
+              itemLabel="━━━ AFRIKA ━━━"
+              itemValue=""
+              itemDisabled="true"
+            />
+            <f:selectItem itemLabel="Ägypten" itemValue="Ägypten" />
+            <f:selectItem itemLabel="Algerien" itemValue="Algerien" />
+            <f:selectItem itemLabel="Äthiopien" itemValue="Äthiopien" />
+            <f:selectItem itemLabel="Ghana" itemValue="Ghana" />
+            <f:selectItem itemLabel="Kenia" itemValue="Kenia" />
+            <f:selectItem itemLabel="Marokko" itemValue="Marokko" />
+            <f:selectItem itemLabel="Nigeria" itemValue="Nigeria" />
+            <f:selectItem itemLabel="Südafrika" itemValue="Südafrika" />
+            <f:selectItem itemLabel="Tunesien" itemValue="Tunesien" />
+
+            <f:selectItem
+              itemLabel="━━━ NORDAMERIKA ━━━"
+              itemValue=""
+              itemDisabled="true"
+            />
+            <f:selectItem itemLabel="Kanada" itemValue="Kanada" />
+            <f:selectItem itemLabel="Mexiko" itemValue="Mexiko" />
+            <f:selectItem itemLabel="USA" itemValue="USA" />
+
+            <f:selectItem
+              itemLabel="━━━ SÜDAMERIKA ━━━"
+              itemValue=""
+              itemDisabled="true"
+            />
+            <f:selectItem itemLabel="Argentinien" itemValue="Argentinien" />
+            <f:selectItem itemLabel="Brasilien" itemValue="Brasilien" />
+            <f:selectItem itemLabel="Chile" itemValue="Chile" />
+            <f:selectItem itemLabel="Kolumbien" itemValue="Kolumbien" />
+            <f:selectItem itemLabel="Peru" itemValue="Peru" />
+            <f:selectItem itemLabel="Venezuela" itemValue="Venezuela" />
+
+            <f:selectItem
+              itemLabel="━━━ OZEANIEN ━━━"
+              itemValue=""
+              itemDisabled="true"
+            />
+            <f:selectItem itemLabel="Australien" itemValue="Australien" />
+            <f:selectItem itemLabel="Neuseeland" itemValue="Neuseeland" />
+          </h:selectOneMenu>
+          <h:message for="country" style="color: red" />
+        </div>
+        <div class="form-group">
+          <h:outputLabel value="Jahr:" for="year" />
+          <h:selectOneMenu
+            id="year"
+            value="#{adminBean.newEmission.year}"
+            required="true"
+            requiredMessage="Bitte wählen Sie ein Jahr aus"
+          >
+            <f:selectItem
+              itemLabel="-- Bitte wählen --"
+              itemValue="#{null}"
+              noSelectionOption="true"
+            />
+            <f:selectItem itemLabel="2025" itemValue="2025" />
+            <f:selectItem itemLabel="2024" itemValue="2024" />
+            <f:selectItem itemLabel="2023" itemValue="2023" />
+            <f:selectItem itemLabel="2022" itemValue="2022" />
+            <f:selectItem itemLabel="2021" itemValue="2021" />
+            <f:selectItem itemLabel="2020" itemValue="2020" />
+            <f:selectItem itemLabel="2019" itemValue="2019" />
+            <f:selectItem itemLabel="2018" itemValue="2018" />
+            <f:selectItem itemLabel="2017" itemValue="2017" />
+            <f:selectItem itemLabel="2016" itemValue="2016" />
+            <f:selectItem itemLabel="2015" itemValue="2015" />
+            <f:selectItem itemLabel="2014" itemValue="2014" />
+            <f:selectItem itemLabel="2013" itemValue="2013" />
+            <f:selectItem itemLabel="2012" itemValue="2012" />
+            <f:selectItem itemLabel="2011" itemValue="2011" />
+            <f:selectItem itemLabel="2010" itemValue="2010" />
+            <f:convertNumber integerOnly="true" />
+          </h:selectOneMenu>
+          <h:message for="year" style="color: red" />
+        </div>
+        <div class="form-group">
+          <h:outputLabel value="CO2-Ausstoß (kt):" for="emissions" />
+          <h:inputText
+            id="emissions"
+            value="#{adminBean.newEmission.emissionsKt}"
+            required="true"
+            requiredMessage="Bitte geben Sie den CO2-Ausstoß ein"
+          >
+            <f:convertNumber />
+          </h:inputText>
+          <h:message for="emissions" style="color: red" />
+        </div>
+        <h:panelGroup rendered="#{adminBean.showSuccessMessage}">
+          <div class="success-box">
+            Ihre Daten wurden aufgenommen und stehen zur Freigabe bereit
+          </div>
+        </h:panelGroup>
+        <h:commandButton
+          value="Daten hinzufügen"
+          action="#{adminBean.addEmission}"
+        />
+      </h:form>
+      <h2>Ausstehende Freigaben</h2>
+      <h:dataTable
+        value="#{adminBean.pendingEmissions}"
+        var="emission"
+        styleClass="table"
+      >
+        <h:column>
+          <f:facet name="header">Land</f:facet>
+          #{emission.country}
+        </h:column>
+        <h:column>
+          <f:facet name="header">Jahr</f:facet>
+          #{emission.year}
+        </h:column>
+        <h:column>
+          <f:facet name="header">CO2-Ausstoß (kt)</f:facet>
+          #{emission.emissionsKt}
+        </h:column>
+        <h:column>
+          <f:facet name="header">Aktionen</f:facet>
+          <h:form style="display: inline">
+            <h:commandButton
+              value="Freigeben"
+              action="#{adminBean.approveEmission(emission.id)}"
+              styleClass="btn-small btn-approve"
+            />
+            <h:commandButton
+              value="Ablehnen"
+              action="#{adminBean.deleteEmission(emission.id)}"
+              styleClass="btn-small btn-delete"
+              onclick="return confirm('Wirklich ablehnen?');"
+            />
+          </h:form>
+        </h:column>
+      </h:dataTable>
+    </div>
+  </h:body>
+</html>

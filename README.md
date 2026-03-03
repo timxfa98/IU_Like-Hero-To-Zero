@@ -16,7 +16,7 @@ Eine Webanwendung zur Darstellung und Verwaltung von weltweiten CO2-Emissionsdat
 
 1. Repository klonen:
 ```bash
-git clone https://github.com/timxfa98/like-hero-to-zero.git
+git clone https://github.com/timxfa98/IU_Like-Hero-To-Zero.git
 cd like-hero-to-zero
 ```
 

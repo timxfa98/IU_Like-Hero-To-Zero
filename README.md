@@ -66,7 +66,7 @@ docker exec -it herotozero-mysql mysql -uroot -proot herotozero
 
 ## Verwendung
 
-### Als Bürger:in (öffentlich)
+### Als Bürger (öffentlich)
 
 1. Öffne http://localhost:8080/like-hero-to-zero/
 2. Wähle dein Land aus dem Dropdown
@@ -74,7 +74,7 @@ docker exec -it herotozero-mysql mysql -uroot -proot herotozero
 4. Klicke "CO2-Daten anzeigen"
 5. Die CO2-Emissionsdaten werden angezeigt
 
-### Als Wissenschaftler:in
+### Als Wissenschaftler
 
 1. Klicke auf "Anmelden" (oben rechts)
 2. Login-Daten eingeben:
